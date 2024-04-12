@@ -22,6 +22,7 @@ function updateReadme(newContent) {
             "\n" +
             `<h2 align="center">📕 My Ithome Latest Article:</h2>` +
             "\n" +
+            "\n" +
             newContent +
             "\n" +
             previousContent.slice(endIndex);

@@ -36,7 +36,7 @@ async function ithomeAction() {
         //   const token = core.getInput("token");
         let limit = parseInt(core.getInput("limit")); // 從輸入參數中取得 limit
         if (isNaN(limit)) {
-            throw new Error("Limit must be a number.");
+            limit = 5; // 預設取得 5 筆資料
         }
         else if (limit < 1) {
             limit = 1; // 限制最少要取得 1 筆資料
@@ -44,9 +44,13 @@ async function ithomeAction() {
         else if (limit > 10) {
             limit = 10; // 限制最多只能取得 10 筆資料
         }
-        const userId = core.getInput("userId"); // 從輸入參數中取得 userId
+        else {
+            limit = 5;
+        }
+        let userId = core.getInput("userId"); // 從輸入參數中取得 userId
         if (!userId) {
-            throw new Error("User ID is required.");
+            userId = "20162289";
+            // throw new Error("User ID is required.");
         }
         await page.goto(`https://ithelp.ithome.com.tw/users/${userId}/articles`);
         await page.waitForSelector(".qa-list");
