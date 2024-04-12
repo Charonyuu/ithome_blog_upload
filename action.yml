@@ -1,0 +1,28 @@
+name: "Ithome Article Post Action"
+author: "Charonyuu"
+description: "show your latest ithome article on your github profile"
+
+inputs:
+  ghToken:
+    required: true
+    default: ${{ github.token }}
+    description: "Your github token"
+  userId:
+    required: true
+    default: ""
+    description: "Your ithome id"
+  limit:
+    required: false
+    default: "5"
+    description: "The number of articles you want to show, limit is between 1 and 10"
+outputs:
+  result:
+    description: "JSON stringified of the latest ithome article"
+    type: "string"
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
+branding:
+  color: "green"
+  icon: "activity"
