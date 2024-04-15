@@ -17,7 +17,7 @@ jobs:
         run: npm install
       - name: Update Readme
         id: updateReadme
-        uses: ./ithomeAction
+        uses: ./
         with:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           userId: "20162289"

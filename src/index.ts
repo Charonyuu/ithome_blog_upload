@@ -28,8 +28,7 @@ async function ithomeAction() {
     }
     let userId = core.getInput("userId"); // 從輸入參數中取得 userId
     if (!userId) {
-      userId = "20162289";
-      // throw new Error("User ID is required.");
+      throw new Error("User ID is required.");
     }
 
     await page.goto(`https://ithelp.ithome.com.tw/users/${userId}/articles`);
