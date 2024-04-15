@@ -7,11 +7,4 @@
 
 Example: 
 <!-- ITHOME-POST-LIST:START -->
-<h2 align="center">📕 My Ithome Latest Article:</h2>
-
-- [[Day 30] 懶得每次都npm test，用Husky幫忙吧 ＆＆ 結語](https://ithelp.ithome.com.tw/articles/10336289) - Likes: 0, Comments: 0, Views: 295
-- [[Day 29] 實戰useIntersection測試](https://ithelp.ithome.com.tw/articles/10336288) - Likes: 0, Comments: 0, Views: 134
-- [[Day 28] useIntersection實戰 做出infinite scroll吧](https://ithelp.ithome.com.tw/articles/10335993) - Likes: 0, Comments: 0, Views: 132
-- [[Day 27] useLogin test](https://ithelp.ithome.com.tw/articles/10335623) - Likes: 0, Comments: 0, Views: 118
-- [[Day 26] 實戰時間useLogin](https://ithelp.ithome.com.tw/articles/10335028) - Likes: 0, Comments: 0, Views: 116
 <!-- ITHOME-POST-LIST:END -->
