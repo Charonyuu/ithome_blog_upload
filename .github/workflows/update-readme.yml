@@ -22,3 +22,10 @@ jobs:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           userId: "20162289"
           limit: "5"
+      - name: Commit changes
+          run: |
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add README.md
+            git commit -m "Update README with latest articles" || echo "No changes to commit"
+            git push
