@@ -15,10 +15,6 @@ inputs:
     required: false
     default: "5"
     description: "The number of articles you want to show, limit is between 1 and 10"
-outputs:
-  result:
-    description: "JSON stringified of the latest ithome article"
-    type: "string"
 
 runs:
   using: "node20"
