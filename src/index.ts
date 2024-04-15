@@ -13,7 +13,13 @@ type Article = {
 
 async function ithomeAction() {
   try {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox"],
+      env: {
+        DISPLAY: ":10.0",
+      },
+    });
 
     console.log("start puppeteer...");
     const page = await browser.newPage();
