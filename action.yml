@@ -15,7 +15,18 @@ inputs:
     required: false
     default: "5"
     description: "The number of articles you want to show, limit is between 1 and 10"
-
+  commit_message:
+    description: "Commit message used while committing to the repo"
+    default: "Updated with the latest ithome blog posts"
+    required: false
+  committer_username:
+    description: "Username used while committing to the repo"
+    default: "ithome-blog-upload-readme-bot"
+    required: false
+  committer_email:
+    description: "Email id used while committing to the repo"
+    default: "ithome-blog-upload-readme-bot@example.com"
+    required: false
 runs:
   using: "node20"
   main: "dist/index.js"

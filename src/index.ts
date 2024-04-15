@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer";
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { updateReadme } from "./utils";
+import { commitReadme, updateReadme } from "./utils";
 
 type Article = {
   title?: string;
@@ -97,6 +97,8 @@ async function ithomeAction() {
       .join("\n");
 
     updateReadme(markdownContent);
+
+    commitReadme();
   } catch (error: any) {
     core.setFailed(`Error updating README: ${error.message}`);
   }

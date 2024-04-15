@@ -1,5 +1,6 @@
-const fs = require("fs");
-const core = require("@actions/core");
+import fs from "fs";
+import * as core from "@actions/core";
+import { spawn } from "child_process";
 
 export function updateReadme(newContent: string) {
   const readmePath = "README.md";
@@ -41,3 +42,57 @@ export function updateReadme(newContent: string) {
     core.setFailed(`Error updating README: ${error.message}`);
   }
 }
+
+const exec = (
+  cmd: string,
+  args: string[] = [],
+  options: { stdio?: any[] } = {}
+) =>
+  new Promise((resolve, reject) => {
+    let outputData = "";
+    const optionsToCLI = {
+      ...options,
+    };
+    if (!optionsToCLI.stdio) {
+      Object.assign(optionsToCLI, { stdio: ["inherit", "inherit", "inherit"] });
+    }
+    const app = spawn(cmd, args, optionsToCLI);
+    if (app.stdout) {
+      // Only needed for pipes
+      app.stdout.on("data", function (data) {
+        outputData += data.toString();
+      });
+    }
+
+    app.on("close", (code) => {
+      if (code !== 0) {
+        return reject({ code, outputData });
+      }
+      return resolve({ code, outputData });
+    });
+    app.on("error", () => reject({ code: 1, outputData }));
+  });
+
+export const commitReadme = async () => {
+  const GITHUB_TOKEN = core.getInput("gh_token");
+  // Getting config
+  const committerUsername = core.getInput("committer_username");
+  const committerEmail = core.getInput("committer_email");
+  const commitMessage = core.getInput("commit_message");
+  // Doing commit and push
+  await exec("git", ["config", "--global", "user.email", committerEmail]);
+  if (GITHUB_TOKEN) {
+    // git remote set-url origin
+    await exec("git", [
+      "remote",
+      "set-url",
+      "origin",
+      `https://${GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`,
+    ]);
+  }
+  await exec("git", ["config", "user.name", committerUsername]);
+  await exec("git", ["add", "README.md"]);
+  await exec("git", ["commit", "-m", commitMessage]);
+  await exec("git", ["push"]);
+  core.info("Readme updated successfully in the upstream repository");
+};

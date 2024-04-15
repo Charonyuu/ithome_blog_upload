@@ -26,7 +26,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ithomeAction = void 0;
 const puppeteer_1 = __importDefault(require("puppeteer"));
 const core = __importStar(require("@actions/core"));
 const utils_1 = require("./utils");
@@ -105,11 +104,11 @@ async function ithomeAction() {
             .map((article) => `- [${article.title}](${article.url}) - Likes: ${article.like}, Comments: ${article.comment}, Views: ${article.view}`)
             .join("\n");
         (0, utils_1.updateReadme)(markdownContent);
+        (0, utils_1.commitReadme)();
     }
     catch (error) {
         core.setFailed(`Error updating README: ${error.message}`);
     }
 }
-exports.ithomeAction = ithomeAction;
 ithomeAction();
 //# sourceMappingURL=index.js.map
