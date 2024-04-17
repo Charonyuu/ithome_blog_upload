@@ -14,5 +14,5 @@
     "lib": ["ESNext", "DOM"] /* 編譯時需要引入的 lib */
   },
   "include": ["src/**/*.ts" /* 包含的 TypeScript 文件目錄 */],
-  "exclude": ["node_modules" /* 排除的目錄 */]
+  "exclude": ["node_modules","__tests__/**/*.+(ts|tsx|js)","localtest/**/*.+(ts|tsx|js)" /* 排除的目錄 */]
 }

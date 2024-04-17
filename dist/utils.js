@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.commitReadme = exports.updateReadme = void 0;
 const fs_1 = __importDefault(require("fs"));
 const core = __importStar(require("@actions/core"));
+// import * as core from "../src/__tests__/fakeCoreFunction";
 const child_process_1 = require("child_process");
 function updateReadme(newContent) {
     const readmePath = "README.md";

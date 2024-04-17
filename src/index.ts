@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 import * as core from "@actions/core";
-import * as github from "@actions/github";
+// import * as core from "./__tests__/fakeCoreFunction";
 import { commitReadme, updateReadme } from "./utils";
 
 type Article = {
