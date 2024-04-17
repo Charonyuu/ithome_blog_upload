@@ -96,7 +96,7 @@ const commitReadme = async () => {
     const committerEmail = core.getInput("committer_email");
     const commitMessage = core.getInput("commit_message");
     // Doing commit and push
-    await exec("git", ["config", "--global", "user.email", committerEmail]);
+    await exec("git", ["config", "user.email", committerEmail]);
     if (GITHUB_TOKEN) {
         // git remote set-url origin
         await exec("git", [
