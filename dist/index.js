@@ -28,6 +28,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const puppeteer_1 = __importDefault(require("puppeteer"));
 const core = __importStar(require("@actions/core"));
+// import * as core from "./__tests__/fakeCoreFunction";
 const utils_1 = require("./utils");
 async function ithomeAction() {
     try {

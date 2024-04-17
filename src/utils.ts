@@ -1,5 +1,6 @@
 import fs from "fs";
 import * as core from "@actions/core";
+// import * as core from "../src/__tests__/fakeCoreFunction";
 import { spawn } from "child_process";
 
 export function updateReadme(newContent: string) {
