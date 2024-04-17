@@ -15,3 +15,5 @@ Example:
 - [[Day 27] useLogin test](https://ithelp.ithome.com.tw/articles/10335623) - Likes: 0, Comments: 0, Views: 123
 - [[Day 26] 實戰時間useLogin](https://ithelp.ithome.com.tw/articles/10335028) - Likes: 0, Comments: 0, Views: 120
 <!-- ITHOME-POST-LIST:END -->
+
+參考資料: https://github.com/gautamkrishnar/blog-post-workflow/tree/d4c2f046016f5d3ff334116fcd3a4adc5807ee55
