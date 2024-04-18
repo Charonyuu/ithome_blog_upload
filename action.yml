@@ -27,6 +27,19 @@ inputs:
     description: "Email id used while committing to the repo"
     default: "ithome-blog-upload-readme-bot@example.com"
     required: false
+  like:
+    required: false
+    default: "true"
+    description: "Whether to show articles with likes or not"
+  comment:
+    required: false
+    default: "true"
+    description: "Whether to show articles with comments or not"
+  view:
+    required: false
+    default: "true"
+    description: "Whether to show articles with views or not"
+
 runs:
   using: "node20"
   main: "dist/index.js"

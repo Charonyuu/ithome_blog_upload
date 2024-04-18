@@ -2,6 +2,8 @@ name: Update Readme
 
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 
 jobs:
   updateReadme:

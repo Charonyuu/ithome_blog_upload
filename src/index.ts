@@ -88,11 +88,18 @@ async function ithomeAction() {
     await browser.close();
     console.log("closed browser...");
 
+    const like = core.getInput("like");
+    const comment = core.getInput("comment");
+    const view = core.getInput("view");
+
     const markdownContent = result
       .splice(0, limit)
       .map(
         (article) =>
-          `- [${article.title}](${article.url}) - Likes: ${article.like}, Comments: ${article.comment}, Views: ${article.view}`
+          `- [${article.title}](${article.url}) 
+          ${like ? "- Likes:" + article.like + "," : null}
+          ${comment ? "- Comments:" + article.comment + "," : null}
+          ${view ? "- Views:" + article.view : null}`
       )
       .join("\n");
 

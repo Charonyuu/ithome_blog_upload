@@ -100,9 +100,15 @@ async function ithomeAction() {
         console.log(result);
         await browser.close();
         console.log("closed browser...");
+        const like = core.getInput("like");
+        const comment = core.getInput("comment");
+        const view = core.getInput("view");
         const markdownContent = result
             .splice(0, limit)
-            .map((article) => `- [${article.title}](${article.url}) - Likes: ${article.like}, Comments: ${article.comment}, Views: ${article.view}`)
+            .map((article) => `- [${article.title}](${article.url}) 
+          ${like ? "- Likes:" + article.like + "," : null}
+          ${comment ? "- Comments:" + article.comment + "," : null}
+          ${view ? "- Views:" + article.view : null}`)
             .join("\n");
         (0, utils_1.updateReadme)(markdownContent);
         (0, utils_1.commitReadme)();
