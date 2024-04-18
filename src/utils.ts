@@ -9,7 +9,6 @@ export function updateReadme(newContent: string) {
   try {
     // 讀取 README 文件的原始內容
     const previousContent = fs.readFileSync(readmePath, "utf8");
-    console.log("getting previousContent", previousContent);
     // 定義 README 中要替換的區域標記
     const startTag = "<!-- ITHOME-POST-LIST:START -->";
     const endTag = "<!-- ITHOME-POST-LIST:END -->";
@@ -34,7 +33,6 @@ export function updateReadme(newContent: string) {
       "\n" +
       previousContent.slice(endIndex);
 
-    console.log("updatedContent", updatedContent);
     // 將更新後的內容寫入 README 文件
     fs.writeFileSync(readmePath, updatedContent, "utf8");
 

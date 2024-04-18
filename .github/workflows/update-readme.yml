@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set Chrome executable path
+      - name: Install Puppeteer
         run: |
-          echo "export PUPPETEER_EXECUTABLE_PATH='/usr/bin/google-chrome'" >> $GITHUB_ENV
           npx puppeteer browsers install chrome
 
       - name: Update Readme with Ithome Blog
