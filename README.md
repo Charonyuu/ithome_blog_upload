@@ -2,7 +2,30 @@
 
 1. 先幫這個專案按個 star⭐，讓更多的人知道這個專案，也方便之後有需要的人可以參考。😉
 2. 到想要使用的專案 repository
-3. 將`<!-- ITHOME-POST-LIST:START --><!-- ITHOME-POST-LIST:END -->` 放入你想要使用的 readme 中，github action 會將 blog post 自動更新到這個位置中間。
+3. 將`<!-- ITHOME-POST-LIST:START -->
+<h2 align="center">📕 My Ithome Latest Article:</h2>
+
+- [[Day 30] 懶得每次都npm test，用Husky幫忙吧 ＆＆ 結語](https://ithelp.ithome.com.tw/articles/10336289) 
+          - Likes:0,
+          - Comments:0,
+          - Views:313
+- [[Day 29] 實戰useIntersection測試](https://ithelp.ithome.com.tw/articles/10336288) 
+          - Likes:0,
+          - Comments:0,
+          - Views:150
+- [[Day 28] useIntersection實戰 做出infinite scroll吧](https://ithelp.ithome.com.tw/articles/10335993) 
+          - Likes:0,
+          - Comments:0,
+          - Views:144
+- [[Day 27] useLogin test](https://ithelp.ithome.com.tw/articles/10335623) 
+          - Likes:0,
+          - Comments:0,
+          - Views:130
+- [[Day 26] 實戰時間useLogin](https://ithelp.ithome.com.tw/articles/10335028) 
+          - Likes:0,
+          - Comments:0,
+          - Views:127
+<!-- ITHOME-POST-LIST:END -->` 放入你想要使用的 readme 中，github action 會將 blog post 自動更新到這個位置中間。
 
 ```markdown
 # Blog posts
