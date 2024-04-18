@@ -23,18 +23,18 @@
     permissions:
         contents: write # 讀寫權限
 
-    jobs:
-        update-readme-with-blog:
-        name: Update this repo's README with latest blog posts
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-                uses: actions/checkout@v4
-            - name: Ithome Article Post Action
-                uses: Charonyuu/ithome_blog_upload@v1
-                with:
-                    ghToken: ${{ secrets.GITHUB_TOKEN }}
-                    userId: "20162289"
+   jobs:
+      update-readme-with-blog:
+           name: Update this repo's README with latest blog posts
+           runs-on: ubuntu-latest
+           steps:
+               - name: Checkout
+                   uses: actions/checkout@v4
+               - name: Ithome Article Post Action
+                   uses: Charonyuu/ithome_blog_upload@v1
+                   with:
+                       ghToken: ${{ secrets.GITHUB_TOKEN }}
+                       userId: "20162289"
 ```
 
 6. 替換掉 userId 變成自己 ithome 的 id.範例如下
