@@ -53,8 +53,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install Puppeteer
+        run: |
+          npx puppeteer browsers install chrome
       - name: Ithome Article Post Action
-        uses: Charonyuu/ithome_blog_upload@v1
+        uses: Charonyuu/ithome_blog_upload@master
         with:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           userId: "20162289"
