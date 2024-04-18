@@ -6,7 +6,7 @@
     "esModuleInterop": true /* 啟用 CommonJS 模組和 ES 模組之間的互操作性 */,
     "skipLibCheck": true /* 跳過對定義文件的檢查 */,
     "forceConsistentCasingInFileNames": true /* 強制一致的檔名大小寫 */,
-    "outDir": "dist" /* 輸出目錄，用於 JavaScript 文件 */,
+    "outDir": "lib" /* 輸出目錄，用於 JavaScript 文件 */,
     "rootDir": "src" /* TypeScript 文件的根目錄 */,
     "resolveJsonModule": true /* 啟用解析 JSON 模組 */,
     "strictNullChecks": true /* 啟用嚴格的空值檢查 */,
@@ -14,5 +14,9 @@
     "lib": ["ESNext", "DOM"] /* 編譯時需要引入的 lib */
   },
   "include": ["src/**/*.ts" /* 包含的 TypeScript 文件目錄 */],
-  "exclude": ["node_modules","__tests__/**/*.+(ts|tsx|js)","localtest/**/*.+(ts|tsx|js)" /* 排除的目錄 */]
+  "exclude": [
+    "node_modules",
+    "__tests__/**/*.+(ts|tsx|js)",
+    "localtest/**/*.+(ts|tsx|js)" /* 排除的目錄 */
+  ]
 }
