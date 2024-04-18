@@ -31,14 +31,16 @@
             - name: Checkout
                 uses: actions/checkout@v4
             - name: Ithome Article Post Action
-                uses: Charonyuu/ithome_blog_upload@v1.0.1
+                uses: Charonyuu/ithome_blog_upload@v1
                 with:
                     ghToken: ${{ secrets.GITHUB_TOKEN }}
                     userId: "20162289"
 ```
 
 6. 替換掉 userId 變成自己 ithome 的 id.範例如下
+![查詢it幫幫忙id圖片](https://github.com/Charonyuu/ithome_blog_upload/assets/88021016/c35b54af-9e78-4d94-81d6-3b9e34f6797b)
 7. 到專案 repository settings, 點選左側的 Actions > General. 更新 "Workflow permissions"變成 "Read and write permissions"然後儲存
+![workflow pemission圖片](https://github.com/Charonyuu/ithome_blog_upload/assets/88021016/03b4c69c-a562-40ed-a1d7-48d33d992b8f)
 
 8. 結果範例:
 
