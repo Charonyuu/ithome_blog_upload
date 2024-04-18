@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set Chrome executable path
+        run: |
+          echo "export PUPPETEER_EXECUTABLE_PATH='/usr/bin/google-chrome'" >> $GITHUB_ENV
+
       - name: Update Readme with Ithome Blog
         uses: ./
         with:
