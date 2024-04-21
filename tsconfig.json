@@ -17,6 +17,6 @@
   "exclude": [
     "node_modules",
     "__tests__/**/*.+(ts|tsx|js)",
-    "localtest/**/*.+(ts|tsx|js)" /* 排除的目錄 */
+    "src/localtest/**/*.+(ts|tsx|js)" /* 排除的目錄 */
   ]
 }

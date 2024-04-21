@@ -1,6 +1,6 @@
 import fs from "fs";
 import * as core from "@actions/core";
-// import * as core from "../localtest/fakeCoreFunction";
+// import * as core from "./localtest/fakeCoreFunction";
 import { spawn } from "child_process";
 
 export function updateReadme(newContent: string) {
@@ -26,7 +26,7 @@ export function updateReadme(newContent: string) {
     const updatedContent =
       previousContent.slice(0, startIndex + startTag.length) +
       "\n" +
-      `<h2 align="center">📕 My Ithome Latest Article:</h2>` +
+      `<h2 align="center">📃 My Ithome Latest Article:</h2>` +
       "\n" +
       "\n" +
       newContent +
@@ -79,7 +79,7 @@ export const commitReadme = async () => {
   const committerEmail = core.getInput("committer_email");
   const commitMessage = core.getInput("commit_message");
   // Doing commit and push
-  await exec("git", ["config", "user.email", committerEmail]);
+  await exec("git", ["config", "user.email", committerEmail as string]);
   if (GITHUB_TOKEN) {
     // git remote set-url origin
     await exec("git", [
@@ -89,9 +89,9 @@ export const commitReadme = async () => {
       `https://${GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`,
     ]);
   }
-  await exec("git", ["config", "user.name", committerUsername]);
+  await exec("git", ["config", "user.name", committerUsername as string]);
   await exec("git", ["add", "README.md"]);
-  await exec("git", ["commit", "-m", commitMessage]);
+  await exec("git", ["commit", "-m", commitMessage as string]);
   await exec("git", ["push"]);
   core.info("Readme updated successfully in the upstream repository");
 };

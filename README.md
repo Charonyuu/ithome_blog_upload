@@ -5,29 +5,7 @@
 3. 將以下內容放入你想要使用的 readme 中，github action 會將 blog post 自動更新到這個位置中間。
 
 ```markdown
-   <!-- ITHOME-POST-LIST:START -->
-<h2 align="center">📕 My Ithome Latest Article:</h2>
-
-- [[Day 30] 懶得每次都npm test，用Husky幫忙吧 ＆＆ 結語](https://ithelp.ithome.com.tw/articles/10336289) 
-          - Likes:0,
-          - Comments:0,
-          - Views:313
-- [[Day 29] 實戰useIntersection測試](https://ithelp.ithome.com.tw/articles/10336288) 
-          - Likes:0,
-          - Comments:0,
-          - Views:150
-- [[Day 28] useIntersection實戰 做出infinite scroll吧](https://ithelp.ithome.com.tw/articles/10335993) 
-          - Likes:0,
-          - Comments:0,
-          - Views:144
-- [[Day 27] useLogin test](https://ithelp.ithome.com.tw/articles/10335623) 
-          - Likes:0,
-          - Comments:0,
-          - Views:130
-- [[Day 26] 實戰時間useLogin](https://ithelp.ithome.com.tw/articles/10335028) 
-          - Likes:0,
-          - Comments:0,
-          - Views:127
+<!-- ITHOME-POST-LIST:START -->
 <!-- ITHOME-POST-LIST:END -->
 ```
 
@@ -73,27 +51,28 @@ jobs:
 8. 結果範例:
 
 <!-- ITHOME-POST-LIST:START -->
-<h2 align="center">📕 My Ithome Latest Article:</h2>
+<h2 align="center">📃 My Ithome Latest Article:</h2>
 
-- [[Day 30] 懶得每次都 npm test，用 Husky 幫忙吧 ＆＆ 結語](https://ithelp.ithome.com.tw/articles/10336289) - Likes: 0, Comments: 0, Views: 306
-- [[Day 29] 實戰 useIntersection 測試](https://ithelp.ithome.com.tw/articles/10336288) - Likes: 0, Comments: 0, Views: 145
-- [[Day 28] useIntersection 實戰 做出 infinite scroll 吧](https://ithelp.ithome.com.tw/articles/10335993) - Likes: 0, Comments: 0, Views: 139
-- [[Day 27] useLogin test](https://ithelp.ithome.com.tw/articles/10335623) - Likes: 0, Comments: 0, Views: 126
-- [[Day 26] 實戰時間 useLogin](https://ithelp.ithome.com.tw/articles/10335028) - Likes: 0, Comments: 0, Views: 123
+- [[Day 30] 懶得每次都 npm test，用 Husky 幫忙吧 ＆＆ 結語](https://ithelp.ithome.com.tw/articles/10336289) - view: 321
+- [[Day 29] 實戰 useIntersection 測試](https://ithelp.ithome.com.tw/articles/10336288) 👍 0 💬 0 👁️ 156
+- [[Day 28] useIntersection 實戰 做出 infinite scroll 吧](https://ithelp.ithome.com.tw/articles/10335993) 👍 0 💬 0 👁️ 152
+- [[Day 27] useLogin test](https://ithelp.ithome.com.tw/articles/10335623) 👍 0 💬 0 👁️ 137
+- [[Day 26] 實戰時間 useLogin](https://ithelp.ithome.com.tw/articles/10335028) 👍 0 💬 0 👁️ 136
 <!-- ITHOME-POST-LIST:END -->
 
 ## 可以放入的選項
 
-| Workflow 選項        | 預設值                                      | 說明                               | 必填 |
-| -------------------- | ------------------------------------------- | ---------------------------------- | ---- |
-| `userId`             | `""`                                        | 你的 it 幫幫忙 id id               | yes  |
-| `gh_token`           | `${{ secrets.GITHUB_TOKEN }}`               | 你的 GitHub token，用來更新 readme | yes  |
-| `limit`              | `5`                                         | 設定要抓幾個 post                  | yes  |
-| `like`               | `true`                                      | 是否要顯示喜歡數                   | no   |
-| `comment`            | `true`                                      | 是否要顯示留言數                   | no   |
-| `view`               | `true`                                      | 是否要顯示閱讀數                   | no   |
-| `commit_message`     | `Updated with the latest ithome blog posts` | 自動更新時 commit message          | no   |
-| `committer_username` | `ithome-blog-upload-readme-bot`             | 自動更新時 committer username      | no   |
-| `committer_email`    | `ithome-blog-upload-readme-bot@example.com` | 自動更新時 committer email         | no   |
+| Workflow 選項        | 預設值                                      | 說明                                    | 必填 |
+| -------------------- | ------------------------------------------- | --------------------------------------- | ---- |
+| `userId`             | `""`                                        | 你的 it 幫幫忙 id                       | yes  |
+| `gh_token`           | `${{ secrets.GITHUB_TOKEN }}`               | 你的 GitHub token，用來更新 readme      | yes  |
+| `limit`              | `5`                                         | 設定要抓幾個 post                       | yes  |
+| `like`               | `true`                                      | 是否要顯示喜歡數                        | no   |
+| `comment`            | `true`                                      | 是否要顯示留言數                        | no   |
+| `view`               | `true`                                      | 是否要顯示閱讀數                        | no   |
+| `commit_message`     | `Updated with the latest ithome blog posts` | 自動更新時 commit message               | no   |
+| `committer_username` | `ithome-blog-upload-readme-bot`             | 自動更新時 committer username           | no   |
+| `committer_email`    | `ithome-blog-upload-readme-bot@example.com` | 自動更新時 committer email              | no   |
+| `icon_emoji`         | `false`                                     | 是否要用 emoji 圖示顯示觀看喜歡與評論數 | no   |
 
 想法參考開源 action: https://github.com/gautamkrishnar/blog-post-workflow/tree/d4c2f046016f5d3ff334116fcd3a4adc5807ee55

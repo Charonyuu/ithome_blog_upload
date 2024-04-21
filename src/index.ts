@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 import * as core from "@actions/core";
-// import * as core from "../localtest/fakeCoreFunction";
+// import * as core from "./localtest/fakeCoreFunction";
 import { commitReadme, updateReadme } from "./utils";
 
 type Article = {
@@ -28,7 +28,7 @@ async function ithomeAction() {
     );
     await page.setJavaScriptEnabled(true);
     //   const token = core.getInput("token");
-    let limit: number = parseInt(core.getInput("limit")); // 從輸入參數中取得 limit
+    let limit: number = parseInt(core.getInput("limit") as string); // 從輸入參數中取得 limit
     if (isNaN(limit)) {
       limit = 5; // 預設取得 5 筆資料
     } else if (limit < 1) {
@@ -91,15 +91,21 @@ async function ithomeAction() {
     const like = core.getInput("like");
     const comment = core.getInput("comment");
     const view = core.getInput("view");
+    const icon_emoji = core.getInput("icon_emoji");
+    const mapping = {
+      like: icon_emoji ? " 👍 " : " - like: ",
+      comment: icon_emoji ? " 💬 " : " - comment: ",
+      view: icon_emoji ? " 👁️ " : " - view: ",
+    };
 
     const markdownContent = result
       .splice(0, limit)
       .map(
         (article) =>
-          `- [${article.title}](${article.url}) 
-          ${like ? "- Likes:" + article.like + "," : null}
-          ${comment ? "- Comments:" + article.comment + "," : null}
-          ${view ? "- Views:" + article.view : null}`
+          `- [${article.title}](${article.url})` +
+          `${like ? mapping["like"] + article.like : ""}` +
+          `${comment ? mapping["comment"] + article.comment : ""}` +
+          `${view ? mapping["view"] + article.view : ""}`
       )
       .join("\n");
 

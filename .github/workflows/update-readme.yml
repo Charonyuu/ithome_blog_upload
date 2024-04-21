@@ -20,3 +20,5 @@ jobs:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           userId: "20162289"
           limit: "5"
+          like: false
+          comment: false
