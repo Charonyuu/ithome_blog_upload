@@ -16,7 +16,7 @@ type Inputs = {
 function getInput(inputName: string) {
   const inputs: Inputs = {
     userId: "20162289", // 這裡設定你的假資料
-    limit: "5",
+    limit: "6",
     committer_username: "fake_user",
     committer_email: "fake_email@fake_email.com",
     commit_message: "fake_commit_message",

@@ -1,7 +1,7 @@
-import puppeteer from "puppeteer";
 import * as core from "@actions/core";
 // import * as core from "./localtest/fakeCoreFunction";
 import { commitReadme, updateReadme } from "./utils";
+import { load } from "cheerio";
 
 type Article = {
   title?: string;
@@ -11,94 +11,74 @@ type Article = {
   view?: string;
 };
 
+async function fetchData(url: string) {
+  const result = await fetch(
+    "https://ithelp.ithome.com.tw/users/20162289/articles"
+  ).then((res) => {
+    return res.text();
+  });
+  return load(result);
+}
+
 async function ithomeAction() {
   try {
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox"],
-      env: {
-        DISPLAY: ":10.0",
-      },
-    });
+    console.log("start scraping...");
+    const userId = core.getInput("userId"); // Get userId from input
 
-    console.log("start puppeteer...");
-    const page = await browser.newPage();
-    await page.setUserAgent(
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36"
-    );
-    await page.setJavaScriptEnabled(true);
-    //   const token = core.getInput("token");
-    let limit: number = parseInt(core.getInput("limit") as string); // 從輸入參數中取得 limit
-    if (isNaN(limit)) {
-      limit = 5; // 預設取得 5 筆資料
-    } else if (limit < 1) {
-      limit = 1; // 限制最少要取得 1 筆資料
-    } else if (limit > 10) {
-      limit = 10; // 限制最多只能取得 10 筆資料
-    } else {
-      limit = 5;
-    }
-    let userId = core.getInput("userId"); // 從輸入參數中取得 userId
     if (!userId) {
       throw new Error("User ID is required.");
     }
-    console.log("go to page...");
-    await page.goto(`https://ithelp.ithome.com.tw/users/${userId}/articles`, {
-      waitUntil: "networkidle2",
+
+    const limit = parseInt((core.getInput("limit") as string) || "5", 10); // Get limit from input
+    const actualLimit = isNaN(limit) ? 5 : Math.max(1, Math.min(limit, 10));
+
+    const url = `https://ithelp.ithome.com.tw/users/${userId}/articles`;
+    console.log(
+      `Scraping articles for userId: ${userId}, limit: ${actualLimit}`
+    );
+
+    const $ = await fetchData(url);
+    const articleList: Article[] = [];
+    $(".qa-list").each((index, element) => {
+      const item: Article = {};
+      const detail = $(element).find(".profile-list__condition");
+
+      $(detail)
+        .find(".qa-condition")
+        .each((index, detailDom) => {
+          const value = $(detailDom).find(".qa-condition__count").text().trim();
+          switch (index) {
+            case 0:
+              item.like = value;
+              break;
+            case 1:
+              item.comment = value;
+              break;
+            case 2:
+              item.view = value;
+              break;
+          }
+        });
+
+      const article = $(element).find(".qa-list__title a");
+      item.title = article.text().trim();
+      item.url = article.attr("href")?.trim();
+      articleList.push(item);
     });
 
-    console.log("getting data...");
-    await page.waitForSelector(".qa-list");
-    const result = await page.evaluate(() => {
-      const list = document.querySelectorAll(".qa-list");
-      const articleList: Article[] = [];
-      list.forEach((Dom) => {
-        const item: Article = {};
-        const detail = Dom.querySelector(".profile-list__condition");
-        detail
-          ?.querySelectorAll(".qa-condition")
-          .forEach((detailDom, index) => {
-            const value = detailDom.querySelector(".qa-condition__count");
-            switch (index) {
-              case 0:
-                item.like = value?.textContent || "";
-                break;
-              case 1:
-                item.comment = value?.textContent || "";
-                break;
-              case 2:
-                item.view = value?.textContent || "";
-                break;
-            }
-          });
-
-        const article =
-          Dom.querySelector(".qa-list__title")?.querySelector("a");
-        item.title = article?.textContent?.trim() || "";
-        item.url = article?.href || "";
-        articleList.push(item);
-      });
-
-      return articleList;
-    });
-
-    console.log("finish getting data..., closing browser...");
-    console.log(result);
-
-    await browser.close();
-    console.log("closed browser...");
+    console.log("Scraping completed, closing...");
 
     const like = core.getInput("like");
     const comment = core.getInput("comment");
     const view = core.getInput("view");
     const icon_emoji = core.getInput("icon_emoji");
     const mapping = {
-      like: icon_emoji ? " 👍 " : " - like: ",
-      comment: icon_emoji ? " 💬 " : " - comment: ",
-      view: icon_emoji ? " 👁️ " : " - view: ",
+      like: icon_emoji ? " 👍 " : " - 喜歡: ",
+      comment: icon_emoji ? " 💬 " : " - 評論: ",
+      view: icon_emoji ? " 👁️ " : " - 瀏覽: ",
     };
 
-    const markdownContent = result
+    const markdownContent = articleList
       .splice(0, limit)
       .map(
         (article) =>
@@ -108,6 +88,8 @@ async function ithomeAction() {
           `${view ? mapping["view"] + article.view : ""}`
       )
       .join("\n");
+
+    console.log("Markdown content: \n" + markdownContent);
 
     updateReadme(markdownContent);
 

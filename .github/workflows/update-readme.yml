@@ -10,15 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Puppeteer
-        run: |
-          npx puppeteer browsers install chrome
-
       - name: Update Readme with Ithome Blog
         uses: ./
         with:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           userId: "20162289"
-          limit: "5"
+          limit: "6"
           like: false
           comment: false
