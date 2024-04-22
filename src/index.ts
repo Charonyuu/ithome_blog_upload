@@ -73,9 +73,9 @@ async function ithomeAction() {
     const view = core.getInput("view");
     const icon_emoji = core.getInput("icon_emoji");
     const mapping = {
-      like: icon_emoji ? " 👍 " : " - 喜歡: ",
-      comment: icon_emoji ? " 💬 " : " - 評論: ",
-      view: icon_emoji ? " 👁️ " : " - 瀏覽: ",
+      like: icon_emoji === "true" ? " 👍 " : " - 喜歡: ",
+      comment: icon_emoji === "true" ? " 💬 " : " - 評論: ",
+      view: icon_emoji === "true" ? " 👁️ " : " - 瀏覽: ",
     };
 
     const markdownContent = articleList
@@ -83,9 +83,9 @@ async function ithomeAction() {
       .map(
         (article) =>
           `- [${article.title}](${article.url})` +
-          `${like ? mapping["like"] + article.like : ""}` +
-          `${comment ? mapping["comment"] + article.comment : ""}` +
-          `${view ? mapping["view"] + article.view : ""}`
+          `${like === "true" ? mapping["like"] + article.like : ""}` +
+          `${comment === "true" ? mapping["comment"] + article.comment : ""}` +
+          `${view === "true" ? mapping["view"] + article.view : ""}`
       )
       .join("\n");
 

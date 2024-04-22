@@ -39,6 +39,10 @@ inputs:
     required: false
     default: "true"
     description: "Whether to show articles with views or not"
+  icon_emoji:
+    required: false
+    default: "false"
+    description: "Emoji to use on readme like, comment, view count"
 
 runs:
   using: "node20"
