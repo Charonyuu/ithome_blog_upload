@@ -36,8 +36,8 @@ jobs:
         with:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           userId: "20162289"
-          like: False
-          comment: False
+          like: "false"
+          comment: "false"
 ```
 
 6. 替換掉 userId 變成自己 ithome 的 id.範例如下
@@ -50,10 +50,10 @@ jobs:
 <!-- ITHOME-POST-LIST:START -->
 <h2 align="center">📃 My Ithome Latest Article:</h2>
 
-- [[Day 30] 懶得每次都 npm test，用 Husky 幫忙吧 ＆＆ 結語](https://ithelp.ithome.com.tw/articles/10336289) - view: 321
-- [[Day 29] 實戰 useIntersection 測試](https://ithelp.ithome.com.tw/articles/10336288) 👍 0 💬 0 👁️ 156
-- [[Day 28] useIntersection 實戰 做出 infinite scroll 吧](https://ithelp.ithome.com.tw/articles/10335993) 👍 0 💬 0 👁️ 152
-- [[Day 27] useLogin test](https://ithelp.ithome.com.tw/articles/10335623) 👍 0 💬 0 👁️ 137
+- [[Day 30] 懶得每次都 npm test，用 Husky 幫忙吧 ＆＆ 結語](https://ithelp.ithome.com.tw/articles/10336289) - view: 321 (只有某一個選項)
+- [[Day 29] 實戰 useIntersection 測試](https://ithelp.ithome.com.tw/articles/10336288) 👁️ 156 (只有某一個選項 但是icon_emoji設定"true")
+- [[Day 28] useIntersection 實戰 做出 infinite scroll 吧](https://ithelp.ithome.com.tw/articles/10335993) 👍 0 💬 0 👁️ 152 (全部選項都有 icon_emoji設定"true")
+- [[Day 27] useLogin test](https://ithelp.ithome.com.tw/articles/10335623) - like: 0 - comment: 0 - view: 137 (全部選項都有 沒設定icon_emoji 或設為"false")
 - [[Day 26] 實戰時間 useLogin](https://ithelp.ithome.com.tw/articles/10335028) 👍 0 💬 0 👁️ 136
 <!-- ITHOME-POST-LIST:END -->
 
